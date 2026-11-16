@@ -4,6 +4,8 @@
  */
 abstract class MuebleBase {
 
+    private MATERIALES $_Material;  
+
     private Caracteristicas $_caracteristicas;
 
     const MAXIMO_MUEBLES = 10;
@@ -17,7 +19,8 @@ abstract class MuebleBase {
     private string | DateTime $_fechaFinVenta = "31/12/2040";
     private float $_precio = 30;
 
-    public function __construct(string $nombre, string $fabricante = "FaMu:",
+    public function __construct(string $nombre, int $material = 10,
+                                string $fabricante = "FaMu:",
                                 string $pais = "ESPAÑA", int $anio = 2020,
                                 string $fechaIniVenta = "01/01/2020",
                                 string|DateTime $fechaFinVenta = "31/12/2040",
@@ -30,6 +33,8 @@ abstract class MuebleBase {
         if (!$this->setNombre($nombre)) {
             throw new Exception("Nombre no válido");
         }
+
+        $this -> setMaterial($material);    //si no se puede le asignara el valor por defecto 10
 
         $this->setFabricante($fabricante);
         $this->setPais($pais);
@@ -92,10 +97,29 @@ abstract class MuebleBase {
             ", fabricante " . $this-> _fabricante . ", fabricado en " . $this -> _pais .
             " a partir del año " . $this -> _anio . ", vendido desde " . $this -> _fechaIniVenta .
             " hasta " . $this -> _fechaFinVenta . ", precio " . $this -> _precio .
+            ", de material " . $this -> _Material -> getMaterialDescripcion() .    //lama al metodo de MATERIALES para devolver la cadena con su descripcion
             ". Caracteristicas: " . $this ->_caracteristicas;
     }
 
     /*Getters y setters */
+    //material
+    public function getMaterial(): MATERIALES {
+        return $this -> _Material;
+    }
+
+    /**
+     * Setter de Material, si el numero que se le pasa, lo busca en la funcion
+     * para que devuelva el material, y el material existe, se le asigna, si no
+     * se le asignara el material por defecto del valor 10
+     *
+     * @param integer $material
+     * @return void
+     */
+    public function setMaterial(int $material): void {
+        if($material && MATERIALES::buscaMaterialPorValor($material) != null) $this -> _Material = MATERIALES::buscaMaterialPorValor($material);   //si el material que se le pasa esta bien se le asigna al de esta clase
+        else $this -> _Material = MATERIALES::buscaMaterialPorValor(10);    //si no se le asigna al valor por defecto 10
+    }
+
     //nombre
     public function getNombre(): string {
         return $this->_nombre;

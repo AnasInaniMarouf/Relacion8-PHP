@@ -44,6 +44,7 @@ function muestraTabla(array $muebles) {
             <th>Índice</th>
             <th>Tipo</th>
             <th>Nombre</th>
+            <th>Material</th>
             <th>Fabricante</th>
             <th>País</th>
             <th>Precio</th>
@@ -54,6 +55,7 @@ function muestraTabla(array $muebles) {
                 <td><?= $indice ?></td>
                 <td><?= get_class($mueble) ?></td>
                 <td><?= $mueble->getNombre() ?></td>
+                <td><?= $mueble->getMaterial()->getMaterialDescripcion() ?></td>
                 <td><?= $mueble->getFabricante() ?></td>
                 <td><?= $mueble->getPais() ?></td>
                 <td><?= $mueble->getPrecio() ?> €</td>
@@ -65,7 +67,6 @@ function muestraTabla(array $muebles) {
     <form action="index.php" method="POST">
         <select name="indice" required>
             <?php foreach ($muebles as $indice => $mueble): ?>
-
                 <option value="<?= $indice ?>">
                     <?= $indice . " - " . $mueble->getNombre() ?>
                 </option>
@@ -99,6 +100,10 @@ function muestraTabla(array $muebles) {
             <p>
                 <strong>Nombre:</strong>
                 <?= $mueble->getNombre() ?>
+            </p>
+            <p>
+                <strong>Material:</strong>
+                <?= $mueble->getMaterial()->getMaterialDescripcion() ?>
             </p>
             <p>
                 <strong>Fabricante:</strong>

@@ -11,6 +11,7 @@ function crearMuebles(): array {
 
     $muebles[1] = new MuebleReciclado(
         "Mesa reciclada",
+        15,
         precio: 45,
         caracs: $caracs1,
         porcentajeReciclado: 80
@@ -24,6 +25,7 @@ function crearMuebles(): array {
 
     $muebles[2] = new MuebleTradicional(
         "Silla clásica",
+        5,
         precio: 60,
         caracs: $caracs2,
         peso: 15,
@@ -65,6 +67,7 @@ function crearMuebles(): array {
 
     $muebles[5] = new MuebleReciclado(
         "Banco reciclado",
+        20,
         precio: 90,
         caracs: $caracs5,
         porcentajeReciclado: 70

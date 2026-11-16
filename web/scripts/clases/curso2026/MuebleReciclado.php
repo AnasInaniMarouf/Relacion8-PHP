@@ -8,10 +8,10 @@ final class MuebleReciclado extends MuebleBase{
 
     private int $_porcentajeReciclado = 10;
 
-    public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020, string $fechaIniVenta = "01/01/2020", string|DateTime $fechaFinVenta = "31/12/2040", float $precio = 30, Caracteristicas $caracs = new Caracteristicas(), int $porcentajeReciclado = 10) {
+    public function __construct(string $nombre, int $material = 10, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020, string $fechaIniVenta = "01/01/2020", string|DateTime $fechaFinVenta = "31/12/2040", float $precio = 30, Caracteristicas $caracs = new Caracteristicas(), int $porcentajeReciclado = 10) {
         $this -> setPorcentajeReciclado($porcentajeReciclado);
 
-        parent::__construct($nombre, $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio, $caracs);
+        parent::__construct($nombre, $material, $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio, $caracs);
     }
 
     function damePropiedadesAdicionales(): array {

@@ -9,11 +9,11 @@ final class MuebleTradicional extends MuebleBase {
     private float $_peso = 15;
     private string $_serie = "S01";
 
-    public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020, string $fechaIniVenta = "01/01/2020", string|DateTime $fechaFinVenta = "31/12/2040", float $precio = 30, Caracteristicas $caracs = new Caracteristicas(), float $peso = 15, string $serie = "S01") {
+    public function __construct(string $nombre, int $material = 10, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020, string $fechaIniVenta = "01/01/2020", string|DateTime $fechaFinVenta = "31/12/2040", float $precio = 30, Caracteristicas $caracs = new Caracteristicas(), float $peso = 15, string $serie = "S01") {
         $this -> setPeso($peso);
         $this -> setSerie(($serie));
 
-        parent::__construct($nombre, $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio, $caracs);
+        parent::__construct($nombre, $material, $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio, $caracs);
     }
 
     function damePropiedadesAdicionales(): array {

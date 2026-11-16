@@ -35,6 +35,7 @@ class Caracteristicas implements Iterator {
      * @return mixed caracteristica
      */
     public function current(): mixed {
+        if($this ->_indice == count($this->_caracteristicas) - 1) return $this->_caracteristicas["numero_serie"];  //asi sera el primero que se devuelva (como esta en orden inverso el foreach pues se coge la ultima posicion)
         return $this -> _caracteristicas[$this -> key()];   //tenia puesto el indice de la clase en vez de key() pero claro como el orden es inverso no me devolvia el valor correcto
     }
 
@@ -67,28 +68,43 @@ class Caracteristicas implements Iterator {
 
     /*Metodos para la creacion de las caracteristicas de forma dinamica*/
     public function __get(string $nombre): mixed {
+        if($nombre == "numero_serie") {     //si se quiere acceder a numero_serie se devuelve un array con 15 digitos
+            $secuencia = "";    //en vez de un array lo pongo como string para que asi esten todos pegados al querer mostrarlo
+
+            for($i = 0; $i < 15; $i++) {
+                $secuencia[$i] = rand(0, 9);
+            }
+
+            return $secuencia;
+        }
+
+        //si no devuelve la caracteristica normal
         return $this -> _caracteristicas[$nombre];
     }
 
     public function __set(string $nombre, mixed $valor): void {
+        //si se quiere guardar o cambiar el valor de numero_serie no se hace nada
+        if(!$nombre == "numero_serie") {
 
-        //si existe, se puede modificar
-        if(array_key_exists($nombre, $this -> _caracteristicas)) {
-            $this->_caracteristicas[$nombre] = $valor;
+            //si existe, se puede modificar
+            if(array_key_exists($nombre, $this -> _caracteristicas)) {
+                $this->_caracteristicas[$nombre] = $valor;
+            }
+                
+            //si esUltima es true, ya no se permite añadir mas valores, pero si modificar (por eso esta debajo de la condicion anterior)
+            if ($this->_esUltima) {
+                throw new Exception("No se pueden crear más características.");
+            }
+
+            //si es ULTIMA, se cambia la variable booleana para que no se puedan añadir valores
+            if ($nombre == "ULTIMA") {
+                $this->_esUltima = true;
+
+            } else {    //si no, se añade o bien se medifica si ya existe
+                $this->_caracteristicas[$nombre] = $valor;
+            }
         }
-            
-        //si esUltima es true, ya no se permite añadir mas valores, pero si modificar (por eso esta debajo de la condicion anterior)
-        if ($this->_esUltima) {
-            throw new Exception("No se pueden crear más características.");
-        }
 
-        //si es ULTIMA, se cambia la variable booleana para que no se puedan añadir valores
-        if ($nombre == "ULTIMA") {
-            $this->_esUltima = true;
-
-        } else {    //si no, se añade o bien se medifica si ya existe
-            $this->_caracteristicas[$nombre] = $valor;
-        } 
     }
 
     public function __isset(string $nombre): bool {

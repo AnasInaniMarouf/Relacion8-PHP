@@ -40,6 +40,7 @@ if ($mueble != null) {
     //datos iniciales segun el tipo de mueble
     $datos = [
         "nombre" => $mueble->getNombre(),
+        "Material" => $mueble->getMaterial()->getMaterialDescripcion(),
         "fabricante" => $mueble->getFabricante(),
         "pais" => $mueble->getPais(),
         "anio" => $mueble->getAnio(),
@@ -75,6 +76,10 @@ if ($mueble != null) {
         //parte 1: se valida con la instancia auxiliar llamando a los set
         if (!$aux->setNombre($datos["nombre"])) {
             $errores["nombre"][] = "El nombre no puede estar vacio ni tener mas de 40 caracteres";
+        }
+
+        if ($datos["Material"] == "" || !intval($datos["Material"]) || intval($datos["Material"]) % 5 != 0) {
+            $errores["Material"][] = "El material debe de ser un numero multiplo de 5";
         }
 
         if (!$aux->setPrecio(floatval($datos["precio"]))) {
@@ -119,6 +124,7 @@ if ($mueble != null) {
         //si no hay errores se actualiza el mueble
         if (!$errores) {
             $mueble->setNombre($datos["nombre"]);
+            $mueble->setMaterial($datos["Material"]);
             $mueble->setFabricante($datos["fabricante"]);
             $mueble->setPais($datos["pais"]);
             $mueble->setAnio($anio);
@@ -187,6 +193,9 @@ function formulario(int $indice, string $tipo, array $datos, array $errores) {
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" value="<?php echo $datos["nombre"]; ?>"><br>
 
+        <label for="Material">Material: </label>
+        <input type="text" name="Material" id="Material" value="<?php echo $datos["material"]; ?>"><br>
+
         <label for="fabricante">Fabricante: </label>
         <input type="text" name="fabricante" id="fabricante" value="<?php echo $datos["fabricante"]; ?>"><br>
 
@@ -228,6 +237,7 @@ function resumen(object $mueble, int $indice) {
     <h2>Mueble <?php echo $indice; ?> modificado correctamente</h2>
     <p><strong>Tipo:</strong> <?php echo get_class($mueble); ?></p>
     <p><strong>Nombre:</strong> <?php echo $mueble->getNombre(); ?></p>
+    <p><strong>Material:</strong> <?php echo $mueble->getMaterial()->getMaterialDescripcion(); ?></p>
     <p><strong>Fabricante:</strong> <?php echo $mueble->getFabricante(); ?></p>
     <p><strong>Pais:</strong> <?php echo $mueble->getPais(); ?></p>
     <p><strong>Anio:</strong> <?php echo $mueble->getAnio(); ?></p>
