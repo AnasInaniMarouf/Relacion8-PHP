@@ -138,7 +138,7 @@ abstract class MuebleBase {
 
     public function setPais(string $pais): void {
         $pais = trim($pais);
-        if($pais == "" || mb_strlen($pais) > 20) $this -> _pais = $pais;
+        if ($pais != "" && mb_strlen($pais) <= 20) $this->_pais = $pais;
     }
 
     //año (anio)

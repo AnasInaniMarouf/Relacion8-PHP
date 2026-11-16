@@ -8,14 +8,14 @@ final class MuebleReciclado extends MuebleBase{
 
     private int $_porcentajeReciclado = 10;
 
-    public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020, string $fechaIniVenta = "01/01/2020", string|DateTime $fechaFinVenta = "31/12/2040", float $precio = 30, int $porcentajeReciclado = 10) {
+    public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020, string $fechaIniVenta = "01/01/2020", string|DateTime $fechaFinVenta = "31/12/2040", float $precio = 30, Caracteristicas $caracs = new Caracteristicas(), int $porcentajeReciclado = 10) {
         $this -> setPorcentajeReciclado($porcentajeReciclado);
 
-        parent::__construct($nombre, $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio);
+        parent::__construct($nombre, $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio, $caracs);
     }
 
     function damePropiedadesAdicionales(): array {
-        return [$this -> _porcentajeReciclado];
+        return ["Porcentaje reciclado" => $this->_porcentajeReciclado];
     }
 
     public function __toString(): string {
@@ -28,7 +28,7 @@ final class MuebleReciclado extends MuebleBase{
     }
 
     public function setPorcentajeReciclado(int $porcentaje): bool {
-        if($porcentaje > 0 && $porcentaje < 100) return false;
+        if ($porcentaje < 0 || $porcentaje > 100) return false;
 
         $this -> _porcentajeReciclado = $porcentaje;
         return true;

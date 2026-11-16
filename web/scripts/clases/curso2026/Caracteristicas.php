@@ -2,7 +2,7 @@
 
 class Caracteristicas implements Iterator {
 
-    private array $_caracteristicas;
+    private array $_caracteristicas = [];
     private int $_indice = 0;
     private bool $_esUltima = false;
 
