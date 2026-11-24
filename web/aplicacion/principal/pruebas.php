@@ -7,7 +7,7 @@ $barra=[
         "ENLACE" =>"/index.php"
     ],
     [
-        "TEXTO" => "Relacion 6",
+        "TEXTO" => "Pruebas",
         "ENLACE" => ""
     ]
 ];
@@ -30,9 +30,8 @@ function cuerpo()
 <main class="contenidoPrincipal">
 <?php
 
-
-
 ?>
 </main>
 <?php
 }
+
