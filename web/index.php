@@ -12,7 +12,7 @@ $barra=[
 inicioCabecera("Relacion 8");
 cabecera();
 finCabecera();
-inicioCuerpo("RELACION 8", $barra);
+inicioCuerpo("Relacion 8", $barra);
 cuerpo(); //llamo a la vista
 finCuerpo();
 // **********************************************************

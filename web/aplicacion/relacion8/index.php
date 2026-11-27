@@ -1,4 +1,3 @@
-
 <?php
 
 include_once(dirname(__FILE__) . "/../../cabecera.php");
@@ -29,4 +28,14 @@ function cabecera(){}
 
 // Vista
 function cuerpo(){
+?>
+<ul class="menuOpciones">
+    <li><a href="/aplicacion/texto/verTextos.php">Textos</a></li>
+    <li><a href="/aplicacion/personalizar/index.php">Pagina Color</a></li>
+    <li><a href="/aplicacion/personalizar/personalizar.php">Personalizar</a></li>
+</ul>
+<main class="contenidoPrincipal">
+
+</main>
+<?php
 }
