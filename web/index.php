@@ -4,7 +4,7 @@ include_once(dirname(__FILE__) . "/cabecera.php");
 $barra=[
     [
         "TEXTO"=> "Inicio",
-        "ENLACE" =>"/index.php"//, "ADICIONAL"=>">>"
+        "ENLACE" =>"/index.php"
     ]
 ];
 
